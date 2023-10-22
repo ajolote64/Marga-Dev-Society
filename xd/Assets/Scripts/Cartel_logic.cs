@@ -7,17 +7,13 @@ namespace personaje
     public class Cartel_logic : MonoBehaviour
     {
         public GameObject informacion;
-        public GameObject mostrarInformacion;
 
         public bool informacionHabilitada;
-        public bool mostrarInformacionHabilitada;
-
         public LayerMask personaje;
 
         void Start()
         {
             informacion.SetActive(false);
-            mostrarInformacion.SetActive(false);
         }
 
         void Update()
@@ -28,22 +24,23 @@ namespace personaje
             {
                 informacion.SetActive(true);
             }
+
+                if (Input.GetKeyDown(KeyCode.Return))
+                {
+                    mostrarInformacion.SetActive(true);
+                    Time.timeScale = 0f; // Pausar el juego mientras se muestra el cartel
+                }
+                else if (Input.GetKeyDown(KeyCode.Escape))
+                {   
+                    mostrarInformacion.SetActive(false);
+                    Time.timeScale = 1f; // Despausar el juego al salir del cartel
+                }
             else
             {
                 informacion.SetActive(false);
             }
-
-            mostrarInformacionHabilitada = Physics2D.OverlapCircle(this.transform.position, 1f, personaje);
-
-            if (mostrarInformacionHabilitada && Input.GetKeyDown(KeyCode.E))
-            {
-                mostrarInformacion.SetActive(true);
-            }
-            else
-            {
-                mostrarInformacion.SetActive(false);
-            }
         }
     }
 }
+
 

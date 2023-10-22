@@ -11,12 +11,13 @@ namespace personaje
         private Rigidbody2D rigidBody;
         private bool mirandoDerecha = true;
         private Animator animator; 
+        public Octavio npc;
 
      private void Start()
         {
          rigidBody = GetComponent<Rigidbody2D>();
          animator = GetComponent<Animator>();
-         }
+        }
 
      // Update is called once per frame
          void Update()
@@ -50,6 +51,12 @@ namespace personaje
             transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
             }
         }
-    }
+    
 
+         public void FinConversacion()
+        {
+        // Llama a la función para que el NPC se vaya
+        npc.Irse();
+        }
+    }
 }
